@@ -7,7 +7,7 @@ The project features both **2 Player Mode** and **Player vs Computer Mode** with
 
 ## 🌐 Live Demo
 Play the game online here:
-[🎮 Play Tic Tac Toe](https://neurovex-16.github.io/TIC-TAC-TOE/)
+[🎮 Play Tic Tac Toe](https://neurovex-16.github.io/TIC_TAC_TOE/)
 
 
 ## 🚀 Features
