@@ -13,6 +13,7 @@ h1{
 body{
     background-color: #548587;
     text-align:center;
+    touch-action: manipulation;
 }
 
 .container{
@@ -30,9 +31,7 @@ body{
     text-align: center;
 }
 
-.box{
-    height:70vh;
-}
+
 
 .game{
     height:60vmin;
@@ -76,6 +75,10 @@ body{
     background-color: #222;
     color: white;
     cursor: pointer;
+}
+
+button{
+    -webkit-tap-highlight-color: transparent;
 }
 
 #reset-btn,
@@ -164,4 +167,23 @@ body{
     outline: none;
     background-color: #e63946;
     box-shadow: 0 0 15px #e63946;
+}
+
+@media (max-width: 600px){
+    .game{
+        width: 90vmin;
+        height: 90vmin;
+        gap: 2vmin;
+    }
+    .box{
+        width: 28vmin;
+        height: 28vmin;
+        font-size: 12vmin;
+    }
+    h1{
+        font-size: 2rem;
+    }
+    #turn-msg{
+        font-size: 1.5rem;
+    }
 }

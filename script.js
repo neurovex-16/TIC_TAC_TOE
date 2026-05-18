@@ -19,15 +19,17 @@ const winPatterns = [
   [3, 4, 5],
   [6, 7, 8]
 ];
-pvpBtn.addEventListener("click", () => {
+pvpBtn.addEventListener("pointerdown", () => {
     vsComputer = false;
     turnMsg.classList.remove("hide");
     turnMsg.innerText = "Player O Turn";
     resetGame();
 });
 
-aiBtn.addEventListener("click", () => {
+aiBtn.addEventListener("pointerdown", () => {
     vsComputer = true;
+    turnMsg.classList.remove("hide");
+    turnMsg.innerText = "Your Turn";
     resetGame();
 });
 
@@ -35,16 +37,25 @@ const resetGame = () => {
     turnO=true;
      count = 0;
     enabledBoxes();
+    if(vsComputer){
+        turnMsg.innerText = "Your Turn";
+    }
+    else{
+        turnMsg.innerText = "Player O Turn";
+    }
     msgContainer.classList.add("hide");
 }
 
 boxes.forEach((box,index)=>{
-    box.addEventListener("click",()=>{
+    box.addEventListener("pointerdown",()=>{
         if (box.innerText !== "") return;
         if(turnO){
             box.innerText="0";
             box.classList.add("O");
             turnO=false;
+            if(vsComputer){
+                turnMsg.innertext="Computer Thinking"
+            }
             if(!vsComputer){
                 turnMsg.innerText = "Player X Turn";
 }
@@ -90,6 +101,7 @@ function computerMove() {
     boxes[randomIndex].disabled = true;
 
     turnO = true;
+    turnMsg.innerText = "Your Turn";
     count++;
 
     if (checkWinner()) return;
@@ -139,10 +151,11 @@ const checkWinner = () =>{
             if(pos1Val === pos2Val && pos2Val === pos3Val)
             {
                 showWinner(pos1Val);
+                return true;
             }
         }
     }
+    return false;
 };
-
-newGameBtn.addEventListener("click",resetGame);
-resetBtn.addEventListener("click",resetGame);
+newGameBtn.addEventListener("pointerdown",resetGame);
+resetBtn.addEventListener("pointerdown",resetGame);
