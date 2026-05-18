@@ -31,7 +31,12 @@ body{
     text-align: center;
 }
 
-
+#mode-msg{
+    color: #ffffc7;
+    font-size: 1.8rem;
+    margin-top: 1rem;
+    font-weight: bold;
+}
 
 .game{
     height:60vmin;
@@ -52,6 +57,8 @@ body{
     font-size:8vmin;
     color:#b0413e;
     background-color: #ffffc7;
+    cursor: pointer;
+    user-select: none;
 }
 
 .X {

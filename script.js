@@ -4,6 +4,7 @@ let newGameBtn=document.querySelector("#new-btn");
 let msgContainer=document.querySelector(".msg-container");
 let msg=document.querySelector("#msg");
 let turnMsg = document.querySelector("#turn-msg");
+let modeMsg = document.querySelector("#mode-msg");
 let pvpBtn = document.querySelector("#pvp-btn");
 let aiBtn = document.querySelector("#ai-btn"); 
 let turnO=true;
@@ -19,15 +20,19 @@ const winPatterns = [
   [3, 4, 5],
   [6, 7, 8]
 ];
-pvpBtn.addEventListener("pointerdown", () => {
+pvpBtn.addEventListener("click", () => {
     vsComputer = false;
+    modeMsg.classList.remove("hide");
+    modeMsg.innerText = "Two Player Mode";
     turnMsg.classList.remove("hide");
     turnMsg.innerText = "Player O Turn";
     resetGame();
 });
 
-aiBtn.addEventListener("pointerdown", () => {
+aiBtn.addEventListener("click", () => {
     vsComputer = true;
+    modeMsg.classList.remove("hide");
+    modeMsg.innerText = "Player vs Computer";
     turnMsg.classList.remove("hide");
     turnMsg.innerText = "Your Turn";
     resetGame();
@@ -47,14 +52,14 @@ const resetGame = () => {
 }
 
 boxes.forEach((box,index)=>{
-    box.addEventListener("pointerdown",()=>{
+    const handleBoxClick = (e)=>{
         if (box.innerText !== "") return;
         if(turnO){
             box.innerText="0";
             box.classList.add("O");
             turnO=false;
             if(vsComputer){
-                turnMsg.innertext="Computer Thinking"
+                turnMsg.innerText="Computer Thinking......"
             }
             if(!vsComputer){
                 turnMsg.innerText = "Player X Turn";
@@ -80,8 +85,15 @@ boxes.forEach((box,index)=>{
         {
             setTimeout(computerMove, 500);
         }
+    };
 
-    });
+    
+    // Laptop Click
+    box.addEventListener("click",handleBoxClick);
+
+    // Mobile Touch
+     box.addEventListener("touchstart", handleBoxClick, { passive: false });
+
 });
 
 function computerMove() {
@@ -157,5 +169,5 @@ const checkWinner = () =>{
     }
     return false;
 };
-newGameBtn.addEventListener("pointerdown",resetGame);
-resetBtn.addEventListener("pointerdown",resetGame);
+newGameBtn.addEventListener("click",resetGame);
+resetBtn.addEventListener("click",resetGame);
