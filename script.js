@@ -55,7 +55,7 @@ boxes.forEach((box,index)=>{
     const handleBoxClick = (e)=>{
         if (box.innerText !== "") return;
         if(turnO){
-            box.innerText="0";
+            box.innerText="O";
             box.classList.add("O");
             turnO=false;
             if(vsComputer){
@@ -123,7 +123,6 @@ function computerMove() {
     }
 }
 
-
 const gameDraw = () => {
   msg.innerText = `Game was a Draw.`;
   msgContainer.classList.remove("hide");
@@ -149,12 +148,15 @@ const showWinner = (winner) => {
     if (vsComputer) {
         if (winner === "O") {
             msg.innerText = "🎉 Player Wins!";
-        } else {
+        } 
+        else if (winner === "X") {
             msg.innerText = "🤖 Computer Wins!";
         }
-    } else {
+    } 
+    else {
         msg.innerText = `🎉 Player ${winner} Wins!`;
     }
+    turnMsg.classList.add("hide");
     msgContainer.classList.remove("hide");
     disabledBoxes();
 };
