@@ -145,8 +145,16 @@ const enabledBoxes = () => {
     }
 };
 
-const showWinner=(winner) => {
-    msg.innerText=`Congratulations. Winner is ${winner}`;
+const showWinner = (winner) => {
+    if (vsComputer) {
+        if (winner === "O") {
+            msg.innerText = "🎉 Player Wins!";
+        } else {
+            msg.innerText = "🤖 Computer Wins!";
+        }
+    } else {
+        msg.innerText = `🎉 Player ${winner} Wins!`;
+    }
     msgContainer.classList.remove("hide");
     disabledBoxes();
 };
